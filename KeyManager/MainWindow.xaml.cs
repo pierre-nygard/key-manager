@@ -40,14 +40,15 @@ namespace KeyManager
 
             Services = services;
 
-            lvServices.ItemsSource = services;
+            RefreshVisualServices();
 
             DataContext = this;
         }
 
-        private List<Service> LoadServices()
+        private void RefreshVisualServices()
         {
-            return _context.Services.Where(s => s.UserID == User.ID).ToList();
+            lvServices.ItemsSource = null;
+            lvServices.ItemsSource = Services;
         }
 
         public class Foo
@@ -58,14 +59,44 @@ namespace KeyManager
 
         private void lvServices_Click(object sender, MouseButtonEventArgs e)
         {
-            var item = sender as ListViewItem;
-            var dataItem = lvServices.ItemContainerGenerator.ItemFromContainer(item);
-            var service = (Service)dataItem;
+            if (lvServices.SelectedItem == null)
+                return;
 
-            if (item.IsSelected && item != null)
+            Service service = lvServices.SelectedItem as Service;
+
+            var keys = GetKeys(service);
+            var window = new ServiceWindow(_context, service, keys);
+            window.ShowDialog();
+            RefreshVisualServices();
+        }
+
+        private List<Models.Key> GetKeys(Service service)
+        {
+            return _context.Keys.Where(k => k.ServiceID == service.ID).ToList();
+        }
+
+        private void removeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (lvServices.SelectedItem == null)
+                return;
+
+            Service service = lvServices.SelectedItem as Service;
+
+            int foundKeys = _context.Keys.Where(k => k.ServiceID == service.ID).Count();
+            if (foundKeys > 0)
             {
-                MessageBox.Show(service.UserID.ToString());
+                MessageBox.Show($"Kan ej ta bort {service.Name}!\nHittade tillhörande {foundKeys} Keys. Ta bort dessa ifall du vill fortsätta.");
+                return;
             }
+            service.Remove(_context);
+            Services.Remove(service);
+            RefreshVisualServices();
+        }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Services.Add(new Service { Name = "New Service Name" });
+            RefreshVisualServices();
         }
     }
 }

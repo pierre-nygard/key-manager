@@ -31,6 +31,7 @@ namespace KeyManager
             .ConfigureServices((hostContext, services) =>
             {
                 services.AddSingleton<VaultContext>();
+                services.AddSingleton<DbInitializer>();
             })
             .Build();
         }
@@ -38,18 +39,19 @@ namespace KeyManager
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
             this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
-
             await _host.StartAsync();
+
+            DbInitializer initializer = _host.Services.GetService<DbInitializer>();
+            initializer.Initialize();
 
             VaultContext context = _host.Services.GetService<VaultContext>();
 
-            IAuthService authentication = new AuthService(context).Run();
+            IUserAuther authentication = new UserAuther(context).Run();
 
             if (authentication.AuthIsValid() == true)
             {
                 this.ShutdownMode = ShutdownMode.OnMainWindowClose;
-
-                new MainService(context).SetForUser(authentication.User).Run();
+                new MainUpstart(context).SetForUser(authentication.User).Run();
             }
             else
             {

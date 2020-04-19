@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200419203022_ChangedKeyValueToIntFromNvarchar.cs" />
+    <Compile Remove="Migrations\20200419203022_ChangedKeyValueToIntFromNvarchar.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Assets\vault.png" />
     <None Remove="vault.png" />
   </ItemGroup>

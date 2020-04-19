@@ -1,0 +1,34 @@
+﻿<Window x:Class="KeyManager.ServiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KeyManager"
+        mc:Ignorable="d"
+        Title="Service" Height="200" Width="300" FontFamily="Arial" FontSize="10">
+    <Grid>
+        <DockPanel>
+            <StackPanel Margin="4" DataContext="{Binding Service}"  DockPanel.Dock="Top" Orientation="Horizontal">
+                <Label Content="Keys för Service: " />
+                <Label Content="{Binding Name}" />
+            </StackPanel>
+            <ListView DockPanel.Dock="Bottom" Name="lvKeys" Margin="4 0 4 4">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5">
+                            <StackPanel Orientation="Horizontal" Margin="0 12">
+                                <TextBlock Padding="0" VerticalAlignment="Center" Text="Key: "  />
+                                <TextBlock Padding="0" VerticalAlignment="Center" Text="{Binding Value}" Margin="0 0 12 0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <!--<ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <EventSetter Event="PreviewMouseLeftButtonDown" Handler="lvServices_Click" />
+                    </Style>
+                </ListView.ItemContainerStyle>-->
+            </ListView>
+        </DockPanel>
+    </Grid>
+</Window>

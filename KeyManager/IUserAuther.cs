@@ -5,10 +5,10 @@ using System.Text;
 
 namespace KeyManager
 {
-    interface IAuthService
+    interface IUserAuther
     {
         User User { get; }
-        IAuthService Run();
+        IUserAuther Run();
         bool AuthIsValid();
     }
 }

@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace KeyManager
 {
-    class MainService : IMainService
+    class MainUpstart : IMainUpstart
     {
         private readonly VaultContext _context;
         private List<Service> _services;
         private User _user;
 
-        public MainService(VaultContext context)
+        public MainUpstart(VaultContext context)
         {
             _context = context;
         }
 
-        public IMainService SetForUser(User user)
+        public IMainUpstart SetForUser(User user)
         {
             _user = user;
             return this;
         }
 
-        public IMainService Run() 
+        public IMainUpstart Run() 
         {
             _services = new List<Service>();
 

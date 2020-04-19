@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KeyManager"
         mc:Ignorable="d"
-        Title="Key Manager 2.0" Height="500" Width="400" FontFamily="Arial" FontSize="10">
+        Title="Key Manager 2.0" Height="600" Width="400" FontFamily="Arial" FontSize="10">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="180" />
+            <RowDefinition Height="140" />
             <RowDefinition />
             <RowDefinition Height="80" />
         </Grid.RowDefinitions>
 
         <StackPanel Width="240" VerticalAlignment="Center" Grid.Row="0">
-            <Image Source="pack://application:,,,/Assets/vault.png" Height="160" Width="200" />
+            <Image Source="pack://application:,,,/Assets/vault.png" Height="140"/>
         </StackPanel>
 
         <DockPanel Grid.Row="1">
@@ -24,34 +24,33 @@
             </StackPanel>
 
             <DockPanel DockPanel.Dock="Bottom" Margin="4 0 4 0">
-                <Button FontWeight="Bold" Padding="4" Margin="0 4 0 4" DockPanel.Dock="Bottom" Content="Lägg till Service" />
-                <Button FontWeight="Bold" Padding="4" Margin="0 4 0 0" DockPanel.Dock="Bottom" Content="Ta bort Service" />
-                <ListView DockPanel.Dock="Top" Name="lvServices">
+                <Button Name="addButton" Click="addBtn_Click" FontWeight="Bold" Padding="4" Margin="0 4 0 4" DockPanel.Dock="Bottom" Content="Lägg till Service" />
+                <Button Name="removeBtn" Click="removeBtn_Click" FontWeight="Bold" Padding="4" Margin="0 4 0 0" DockPanel.Dock="Bottom" Content="Ta bort Service" />
+                <ListView DockPanel.Dock="Top" Name="lvServices" MouseDoubleClick="lvServices_Click">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="5">
-                                <StackPanel Orientation="Horizontal" Margin="0 12">
+                                <StackPanel Orientation="Horizontal" Margin="0 6">
                                     <TextBlock Padding="0" VerticalAlignment="Center" Text="ID: "  />
                                     <TextBlock Padding="0" VerticalAlignment="Center" Text="{Binding ID}" Margin="0 0 12 0" />
-                                    <TextBlock Padding="0" FontWeight="Bold" VerticalAlignment="Center" FontSize="14" Text="{Binding Name}" />
+                                    <TextBlock Padding="0" FontWeight="Bold" VerticalAlignment="Center" FontSize="12" Text="{Binding Name}" />
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="lvServices_Click" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
                 </ListView>
             </DockPanel>
         </DockPanel>
 
-        <StackPanel Height="80" Grid.Row="2" Background="#FFf5f5f5" >
-            <DockPanel Height="72" Margin="4" LastChildFill="True">
-                <Label HorizontalContentAlignment="Left" FontSize="10" DockPanel.Dock="Top" Foreground="Gray" Content="Copyright © 2020 Pierre Nygård" />
-                <Label HorizontalContentAlignment="Left" FontSize="10" DockPanel.Dock="Top" Foreground="Gray" Content="Key Manager 2.0" />
-                <Label HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" FontSize="10" DockPanel.Dock="Bottom" Foreground="Gray" Content="GitHub @pierre-nygard" />
+        <StackPanel Grid.Row="2" Background="#FFf5f5f5" >
+            <DockPanel Margin="4">
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                    <Label Padding="0" HorizontalContentAlignment="Left" FontSize="10" Foreground="Gray" Content="Copyright © 2020 Pierre Nygård" />
+                    <Label Padding="0 4 0 0" HorizontalContentAlignment="Left" FontSize="10" Foreground="Gray" Content="Key Manager v2.0" />
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Right">
+                    <Label Padding="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" FontSize="10" Foreground="Gray" Content="GitHub @pierre-nygard" />
+                </StackPanel>
             </DockPanel>
         </StackPanel>
     </Grid>

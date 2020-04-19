@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KeyManager
 {
-    class AuthService : IAuthService
+    class UserAuther : IUserAuther
     {
         private readonly VaultContext _context;
         private User _user;
@@ -17,12 +17,12 @@ namespace KeyManager
         }
 
 
-        public AuthService(VaultContext context)
+        public UserAuther(VaultContext context)
         {
             _context = context;
         }
 
-        public IAuthService Run()
+        public IUserAuther Run()
         {
             _user = null;
             AuthenticationWindow authWindow = new AuthenticationWindow(_context);

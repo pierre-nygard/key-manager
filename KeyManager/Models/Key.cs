@@ -18,8 +18,7 @@ namespace KeyManager.Models
             get { return _id; }
             set { _id = value; NotifyPropertyChanged(); }
         }
-        [MaxLength(50)]
-        public int Value
+        public string Value
         {
             get { return _value; }
             set { _value = value; NotifyPropertyChanged(); }
@@ -30,7 +29,7 @@ namespace KeyManager.Models
             set { _serviceID = value; NotifyPropertyChanged(); }
         }
         private int _id;
-        private int _value;
+        private string _value;
         private int _serviceID;
 
         public Service Service { get; set; }
