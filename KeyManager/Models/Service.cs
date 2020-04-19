@@ -18,10 +18,10 @@ namespace KeyManager.Models
             get { return _id; }
             set { _id = value; NotifyPropertyChanged(); }
         }
-        public string ServiceName
+        public string Name
         {
-            get { return _serviceName; }
-            set { _serviceName = value; NotifyPropertyChanged(); }
+            get { return _name; }
+            set { _name = value; NotifyPropertyChanged(); }
         }
         public int UserID
         {
@@ -32,7 +32,7 @@ namespace KeyManager.Models
         public List<Key> Keys { get; set; }
 
         private int _id;
-        private string _serviceName;
+        private string _name;
         private int _userID;
 
         public event PropertyChangedEventHandler PropertyChanged;

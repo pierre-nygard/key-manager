@@ -1,5 +1,6 @@
 ﻿using KeyManager.Data;
 using KeyManager.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,25 @@ namespace KeyManager
     {
         private readonly VaultContext _context;
 
-        public User User { get; set; }
+        public User _user;
+
+        private List<Service> services;
+        private List<KeyManager.Models.Key> keys;
 
         public MainWindow(VaultContext context, User user)
         {
             InitializeComponent();
             _context = context;
-            User = new User();
-            mainLabel.Content = User.UserName;
+            _user = user;
+
+            services = LoadServices();
+            services.ForEach(s => MessageBox.Show(s.Name));
+            keys = new List<KeyManager.Models.Key>();
+        }
+
+        private List<Service> LoadServices()
+        {
+            return _context.Services.Where(s => s.UserID == _user.ID).ToList();
         }
     }
 }
