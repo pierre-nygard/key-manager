@@ -5,9 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KeyManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Key Manager 2.0" Height="500" Width="400" FontFamily="Arial" FontSize="10">
     <Grid>
-        <Label Name="mainLabel" HorizontalAlignment="Left" Margin="231,143,0,0" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="180" />
+            <RowDefinition />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
 
+        <StackPanel Width="240" VerticalAlignment="Center" Grid.Row="0">
+            <Image Source="pack://application:,,,/Assets/vault.png" Height="160" Width="200" />
+        </StackPanel>
+
+        <DockPanel Grid.Row="1">
+            <StackPanel Margin="4" DockPanel.Dock="Top" Orientation="Horizontal" DataContext="{Binding User}">
+                <Label Padding="0" Content="Inloggad som: "/>
+                <Label Padding="0" FontWeight="Bold" Foreground="#ff28738f" Content="{Binding UserName}" />
+            </StackPanel>
+
+            <DockPanel DockPanel.Dock="Bottom" Margin="4 0 4 0">
+                <Button FontWeight="Bold" Padding="4" Margin="0 4 0 4" DockPanel.Dock="Bottom" Content="Lägg till Service" />
+                <Button FontWeight="Bold" Padding="4" Margin="0 4 0 0" DockPanel.Dock="Bottom" Content="Ta bort Service" />
+                <ListView DockPanel.Dock="Top" Name="lvServices">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5">
+                                <StackPanel Orientation="Horizontal" Margin="0 12">
+                                    <TextBlock Padding="0" VerticalAlignment="Center" Text="ID: "  />
+                                    <TextBlock Padding="0" VerticalAlignment="Center" Text="{Binding ID}" Margin="0 0 12 0" />
+                                    <TextBlock Padding="0" FontWeight="Bold" VerticalAlignment="Center" FontSize="14" Text="{Binding Name}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="lvServices_Click" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </DockPanel>
+        </DockPanel>
+
+        <StackPanel Height="80" Grid.Row="2" Background="#FFf5f5f5" >
+            <DockPanel Height="72" Margin="4" LastChildFill="True">
+                <Label HorizontalContentAlignment="Left" FontSize="10" DockPanel.Dock="Top" Foreground="Gray" Content="Copyright © 2020 Pierre Nygård" />
+                <Label HorizontalContentAlignment="Left" FontSize="10" DockPanel.Dock="Top" Foreground="Gray" Content="Key Manager 2.0" />
+                <Label HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" FontSize="10" DockPanel.Dock="Bottom" Foreground="Gray" Content="GitHub @pierre-nygard" />
+            </DockPanel>
+        </StackPanel>
     </Grid>
 </Window>

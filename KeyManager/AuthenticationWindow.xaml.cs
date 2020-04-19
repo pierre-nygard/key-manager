@@ -29,6 +29,7 @@ namespace KeyManager
             get => passwordTextBox.Password;
             set => passwordTextBox.Password = value;
         }
+
         private User _user;
 
         public AuthenticationWindow(VaultContext context)

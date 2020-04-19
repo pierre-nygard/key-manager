@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KeyManager"
         mc:Ignorable="d"
-        Title="AuthenticationWindow" Height="450" Width="500" FontFamily="Arial">
+        Title="Logga In" Height="450" Width="400" FontFamily="Arial" FontSize="10">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="220"/>
@@ -14,15 +14,15 @@
 
         <Image Source="pack://application:,,,/Assets/vault.png" Height="200" Grid.Row="0"/>
         <StackPanel Grid.Row="1" Width="200">
-            <StackPanel Margin="0 0 0 10">
-                <Label Content="Username:" />
-                <TextBox x:Name="userNameTextBox" Height="20"  />
+            <StackPanel Margin="0 0 0 4">
+                <Label Padding="0 0 0 4" Content="Username:" />
+                <TextBox Padding="4" x:Name="userNameTextBox" />
             </StackPanel>
-            <StackPanel Margin="0 0 0 10">
-                <Label Content="Password:" Width="200" />
-                <PasswordBox x:Name="passwordTextBox" Height="20"  />
+            <StackPanel Margin="0 0 0 4">
+                <Label Padding="0 0 0 4" Content="Password:" Width="200" />
+                <PasswordBox Padding="4" x:Name="passwordTextBox"  />
             </StackPanel>
-            <Button Content="Authenticate" Click="AuthButton_Click" Padding="4" />
+            <Button FontWeight="Bold" Content="Authenticate" Click="AuthButton_Click" Padding="4" />
         </StackPanel>
     </Grid>
 </Window>
