@@ -41,6 +41,8 @@ namespace KeyManager
             Services = services;
 
             lvServices.ItemsSource = services;
+
+            DataContext = this;
         }
 
         private List<Service> LoadServices()
