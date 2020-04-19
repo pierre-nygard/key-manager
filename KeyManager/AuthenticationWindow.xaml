@@ -1,0 +1,28 @@
+﻿<Window x:Class="KeyManager.AuthenticationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KeyManager"
+        mc:Ignorable="d"
+        Title="AuthenticationWindow" Height="450" Width="500" FontFamily="Arial">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="220"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Image Source="pack://application:,,,/Assets/vault.png" Height="200" Grid.Row="0"/>
+        <StackPanel Grid.Row="1" Width="200">
+            <StackPanel Margin="0 0 0 10">
+                <Label Content="Username:" />
+                <TextBox x:Name="userNameTextBox" Height="20"  />
+            </StackPanel>
+            <StackPanel Margin="0 0 0 10">
+                <Label Content="Password:" Width="200" />
+                <PasswordBox x:Name="passwordTextBox" Height="20"  />
+            </StackPanel>
+            <Button Content="Authenticate" Click="AuthButton_Click" Padding="4" />
+        </StackPanel>
+    </Grid>
+</Window>

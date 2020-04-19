@@ -1,4 +1,5 @@
 ﻿using KeyManager.Data;
+using KeyManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +17,18 @@ using System.Windows.Shapes;
 
 namespace KeyManager
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private readonly VaultContext _context;
 
-        public MainWindow(VaultContext context)
+        public User User { get; set; }
+
+        public MainWindow(VaultContext context, User user)
         {
             InitializeComponent();
             _context = context;
-            mainLabel.Content = _context.Users.Count().ToString();
+            User = new User();
+            mainLabel.Content = User.UserName;
         }
     }
 }

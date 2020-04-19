@@ -1,4 +1,5 @@
 ﻿using KeyManager.Data;
+using KeyManager.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,17 +31,30 @@ namespace KeyManager
             .ConfigureServices((hostContext, services) =>
             {
                 services.AddSingleton<VaultContext>();
-                services.AddSingleton<MainWindow>();
             })
             .Build();
         }
 
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
+            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
             await _host.StartAsync();
-            
-            var mainWindow = _host.Services.GetService<MainWindow>();
-            mainWindow.Show();
+
+            VaultContext context = _host.Services.GetService<VaultContext>();
+
+            IAuthService authentication = new AuthService(context).Run();
+
+            if (authentication.AuthIsValid() == true)
+            {
+                this.ShutdownMode = ShutdownMode.OnMainWindowClose;
+
+                new MainService(context).SetForUser(authentication.User).Run();
+            }
+            else
+            {
+                Shutdown();
+            }
         }
 
         private async void Application_Exit(object sender, ExitEventArgs e)

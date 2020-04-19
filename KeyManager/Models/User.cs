@@ -1,13 +1,9 @@
-﻿using KeyManager.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KeyManager.Models
 {
@@ -44,8 +40,5 @@ namespace KeyManager.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public static async Task<List<User>> GetAll(VaultContext context) 
-            => await context.Users.ToListAsync();
     }
 }
