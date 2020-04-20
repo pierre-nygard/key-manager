@@ -22,6 +22,8 @@ namespace KeyManager
         
         public App()
         {
+            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
             _host = new HostBuilder()
             .ConfigureAppConfiguration((hostContext, configApp) =>
             {
@@ -30,7 +32,9 @@ namespace KeyManager
             })
             .ConfigureServices((hostContext, services) =>
             {
-                services.AddSingleton<VaultContext>();
+                services.AddDbContext<VaultContext>(options => 
+                    options.UseSqlServer(hostContext.Configuration.GetConnectionString("DefaultConnection")));
+                services.AddSingleton<AuthenticationWindow>();
                 services.AddSingleton<DbInitializer>();
             })
             .Build();
@@ -38,25 +42,21 @@ namespace KeyManager
 
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
-            this.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             await _host.StartAsync();
 
-            DbInitializer initializer = _host.Services.GetService<DbInitializer>();
-            initializer.Initialize();
+            _host.Services.GetService<DbInitializer>().Initialize();
 
-            VaultContext context = _host.Services.GetService<VaultContext>();
+            AuthenticationWindow authWindow = _host.Services.GetService<AuthenticationWindow>();
+            authWindow.ShowDialog();
 
-            IUserAuther authentication = new UserAuther(context).Run();
-
-            if (authentication.AuthIsValid() == true)
+            if (authWindow.User != null)
             {
                 this.ShutdownMode = ShutdownMode.OnMainWindowClose;
-                new MainUpstart(context).SetForUser(authentication.User).Run();
+                VaultContext context = _host.Services.GetService<VaultContext>();
+                
+                new MainWindow(context, authWindow.User).ShowDialog();
             }
-            else
-            {
-                Shutdown();
-            }
+            Shutdown();
         }
 
         private async void Application_Exit(object sender, ExitEventArgs e)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KeyManager"
         mc:Ignorable="d"
-        Title="Key Manager 2.0" Height="600" Width="400" FontFamily="Arial" FontSize="10">
+        Title="Key Manager 2.0" Height="600" Width="500" FontFamily="Arial" FontSize="12">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140" />
@@ -17,22 +17,24 @@
             <Image Source="pack://application:,,,/Assets/vault.png" Height="140"/>
         </StackPanel>
 
-        <DockPanel Grid.Row="1">
-            <StackPanel Margin="4" DockPanel.Dock="Top" Orientation="Horizontal" DataContext="{Binding User}">
+        <DockPanel Width="400" Grid.Row="1">
+            <StackPanel Margin="0 4" DockPanel.Dock="Top" Orientation="Horizontal" DataContext="{Binding User}">
                 <Label Padding="0" Content="Inloggad som: "/>
                 <Label Padding="0" FontWeight="Bold" Foreground="#ff28738f" Content="{Binding UserName}" />
             </StackPanel>
 
             <DockPanel DockPanel.Dock="Bottom" Margin="4 0 4 0">
-                <Button Name="addButton" Click="addBtn_Click" FontWeight="Bold" Padding="4" Margin="0 4 0 4" DockPanel.Dock="Bottom" Content="Lägg till Service" />
-                <Button Name="removeBtn" Click="removeBtn_Click" FontWeight="Bold" Padding="4" Margin="0 4 0 0" DockPanel.Dock="Bottom" Content="Ta bort Service" />
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
+                    <Button Foreground="White" Name="addButton" Click="addBtn_Click" FontWeight="Bold" Padding="4" Margin="0 10 0 4" Content="Lägg till Service" />
+                    <Button Foreground="White" Name="removeBtn" Click="removeBtn_Click" FontWeight="Bold" Padding="4" Margin="0 0 0 10" Content="Ta bort Service" />
+                </StackPanel>
                 <ListView DockPanel.Dock="Top" Name="lvServices" MouseDoubleClick="lvServices_Click">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="5">
+                            <StackPanel Margin="0">
                                 <StackPanel Orientation="Horizontal" Margin="0 6">
                                     <TextBlock Padding="0" VerticalAlignment="Center" Text="ID: "  />
-                                    <TextBlock Padding="0" VerticalAlignment="Center" Text="{Binding ID}" Margin="0 0 12 0" />
+                                    <TextBlock Padding="0" HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding ID}" Width="30" />
                                     <TextBlock Padding="0" FontWeight="Bold" VerticalAlignment="Center" FontSize="12" Text="{Binding Name}" />
                                 </StackPanel>
                             </StackPanel>
@@ -43,13 +45,13 @@
         </DockPanel>
 
         <StackPanel Grid.Row="2" Background="#FFf5f5f5" >
-            <DockPanel Margin="4">
+            <DockPanel Width="400" Margin="4">
                 <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
-                    <Label Padding="0" HorizontalContentAlignment="Left" FontSize="10" Foreground="Gray" Content="Copyright © 2020 Pierre Nygård" />
-                    <Label Padding="0 4 0 0" HorizontalContentAlignment="Left" FontSize="10" Foreground="Gray" Content="Key Manager v2.0" />
+                    <Label Padding="0" HorizontalContentAlignment="Left" Foreground="Gray" Content="Copyright © 2020 Pierre Nygård" />
+                    <Label Padding="0 4 0 0" HorizontalContentAlignment="Left" Foreground="Gray" Content="Key Manager v2.0" />
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Right">
-                    <Label Padding="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" FontSize="10" Foreground="Gray" Content="GitHub @pierre-nygard" />
+                    <Label Padding="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Bottom" Foreground="Gray" Content="GitHub @pierre-nygard" />
                 </StackPanel>
             </DockPanel>
         </StackPanel>

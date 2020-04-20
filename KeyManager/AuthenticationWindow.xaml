@@ -22,7 +22,7 @@
                 <Label Padding="0 0 0 4" Content="Password:" Width="200" />
                 <PasswordBox Padding="4" x:Name="passwordTextBox"  />
             </StackPanel>
-            <Button FontWeight="Bold" Content="Authenticate" Click="AuthButton_Click" Padding="4" />
+            <Button Foreground="White" FontWeight="Bold" Content="Authenticate" Click="AuthButton_Click" Padding="4" />
         </StackPanel>
     </Grid>
 </Window>
