@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KeyManager"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Logga In" Height="450" Width="400" FontFamily="Arial" FontSize="10">
     <Grid>
@@ -22,7 +23,7 @@
                 <Label Padding="0 0 0 4" Content="Password:" Width="200" />
                 <PasswordBox Padding="4" x:Name="passwordTextBox"  />
             </StackPanel>
-            <Button Foreground="White" FontWeight="Bold" Content="Authenticate" Click="AuthButton_Click" Padding="4" />
+            <Button Style="{StaticResource MaterialDesignFlatButton}" ToolTip="Logga In" Click="AuthButton_Click" Content="{materialDesign:PackIcon SignIn}" />
         </StackPanel>
     </Grid>
 </Window>

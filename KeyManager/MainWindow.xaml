@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:KeyManager"
         mc:Ignorable="d"
         Title="Key Manager 2.0" Height="600" Width="500" FontFamily="Arial" FontSize="12">
@@ -25,8 +26,8 @@
 
             <DockPanel DockPanel.Dock="Bottom" Margin="4 0 4 0">
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
-                    <Button Foreground="White" Name="addButton" Click="addBtn_Click" FontWeight="Bold" Padding="4" Margin="0 10 0 4" Content="Lägg till Service" />
-                    <Button Foreground="White" Name="removeBtn" Click="removeBtn_Click" FontWeight="Bold" Padding="4" Margin="0 0 0 10" Content="Ta bort Service" />
+                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Foreground="White" Name="addButton" Click="addBtn_Click" Padding="4" Margin="0 10 0 4" Content="Lägg till Service" />
+                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Foreground="White" Name="removeBtn" Click="removeBtn_Click" Padding="4" Margin="0 0 0 10" Content="Ta bort Service" />
                 </StackPanel>
                 <ListView DockPanel.Dock="Top" Name="lvServices" MouseDoubleClick="lvServices_Click">
                     <ListView.ItemTemplate>
@@ -44,8 +45,8 @@
             </DockPanel>
         </DockPanel>
 
-        <StackPanel Grid.Row="2" Background="#FFf5f5f5" >
-            <DockPanel Width="400" Margin="4">
+        <StackPanel Grid.Row="2">
+            <DockPanel Width="400" Margin="4 14 4 4">
                 <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
                     <Label Padding="0" HorizontalContentAlignment="Left" Foreground="Gray" Content="Copyright © 2020 Pierre Nygård" />
                     <Label Padding="0 4 0 0" HorizontalContentAlignment="Left" Foreground="Gray" Content="Key Manager v2.0" />

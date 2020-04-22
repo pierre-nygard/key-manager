@@ -3,27 +3,44 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:KeyManager"
         mc:Ignorable="d"
-        Title="Service" Height="200" Width="300" FontFamily="Arial" FontSize="10">
+        Title="Service" Height="300" Width="400" FontFamily="Arial" FontSize="10">
     <Grid>
-        <DockPanel>
-            <StackPanel Margin="4" DataContext="{Binding Service}"  DockPanel.Dock="Top" Orientation="Horizontal">
-                <Label Content="Keys för Service: " />
-                <Label Content="{Binding Name}" />
-            </StackPanel>
-            <ListView DockPanel.Dock="Bottom" Name="lvKeys" Margin="4 0 4 4">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="5">
-                            <StackPanel Orientation="Horizontal" Margin="0 12">
-                                <TextBlock Padding="0" VerticalAlignment="Center" Text="Key: "  />
-                                <TextBlock Padding="0" VerticalAlignment="Center" Text="{Binding Value}" Margin="0 0 12 0" />
-                            </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="4" Grid.Row="0"  DataContext="{Binding Service}" Orientation="Horizontal">
+            <Label Content="Keys för Service: " />
+            <Label Content="{Binding Name}" />
+        </StackPanel>
+
+        <ListView Grid.Row="1" Name="lvKeys" Margin="4 0 4 4">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <StackPanel Orientation="Horizontal" Margin="0 12">
+                            <TextBlock Padding="0" VerticalAlignment="Center" Text="Key: "  />
+                            <TextBlock Padding="0" VerticalAlignment="Center" Text="{Binding Value}" Margin="0 0 12 0" />
                         </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </DockPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Style="{StaticResource MaterialDesignFlatLightBgButton}" ToolTip="Lägg till Key" Name="addButton" FontWeight="Bold" Padding="4" Margin="4 0" Content="{materialDesign:PackIcon KeyPlus}" />
+            <Button Grid.Column="1" Style="{StaticResource MaterialDesignFlatLightBgButton}" ToolTip="Ta bort Key" Name="removeBtn" FontWeight="Bold" Padding="4" Margin="4 0" Content="{materialDesign:PackIcon KeyRemove}" />
+            <Button Grid.Column="2" Style="{StaticResource MaterialDesignFlatLightBgButton}" ToolTip="Ändra Key" Name="changeBtn" FontWeight="Bold" Padding="4" Margin="4 0" Content="{materialDesign:PackIcon KeyChange}" />
+        </Grid>
     </Grid>
 </Window>
