@@ -46,8 +46,6 @@ Application is using a relational database and EF Core
 
 ## Graphic Design
 
-```
 ![Authentication Window](/StaticResources/log-in-screen.png "Authentication Window")
-```
 
 ![Main Window](/StaticResources/main-screen.png "Main Window")
