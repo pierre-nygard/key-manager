@@ -1,11 +1,12 @@
 ﻿using KeyManager.Data;
 using KeyManager.Models;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using KeyManager.Views;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace KeyManager
 {
@@ -16,31 +17,29 @@ namespace KeyManager
         public User User { get; set; }
 
         private List<Service> Services { get; set; }
-        private List<Models.Key> Keys { get; set; }
 
         public MainWindow(VaultContext context, User user)
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             _context = context;
-            User = user;
 
-            //Services = new List<Models.Service>();
-            //Keys = new List<Models.Key>();
+            User = user;
 
             Services = LoadServices();
 
-            RefreshVisualServices();
+            this.VisuallyReset();
 
             DataContext = this;
         }
 
-        private List<Service> LoadServices()
+        public List<Service> LoadServices()
         {
             return _context.Services.Where(s => s.UserID == User.ID).ToList();
         }
 
-        private void RefreshVisualServices()
+        private void VisuallyReset()
         {
             lvServices.ItemsSource = null;
             lvServices.ItemsSource = Services;
@@ -53,15 +52,9 @@ namespace KeyManager
 
             Service service = lvServices.SelectedItem as Service;
 
-            var keys = GetKeys(service);
-            var window = new ServiceWindow(_context, service, keys);
+            var window = new ServiceWindow(_context, service);
             window.ShowDialog();
-            RefreshVisualServices();
-        }
-
-        private List<Models.Key> GetKeys(Service service)
-        {
-            return _context.Keys.Where(k => k.ServiceID == service.ID).ToList();
+            this.VisuallyReset();
         }
 
         private void removeBtn_Click(object sender, RoutedEventArgs e)
@@ -79,13 +72,13 @@ namespace KeyManager
             }
             service.Remove(_context);
             Services.Remove(service);
-            RefreshVisualServices();
+            this.VisuallyReset();
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
             Services.Add(new Service { Name = "New Service Name" });
-            RefreshVisualServices();
+            this.VisuallyReset();
         }
     }
 }

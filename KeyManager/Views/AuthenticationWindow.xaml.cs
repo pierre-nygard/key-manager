@@ -3,7 +3,7 @@ using KeyManager.Models;
 using System.Linq;
 using System.Windows;
 
-namespace KeyManager
+namespace KeyManager.Views
 {
     public partial class AuthenticationWindow : Window
     {

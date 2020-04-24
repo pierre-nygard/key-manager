@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KeyManager.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -40,5 +41,17 @@ namespace KeyManager.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public void Remove(VaultContext context) 
+        {
+            context.Keys.Remove(this);
+            context.SaveChanges();
+        }
+
+        public void Add(VaultContext context)
+        {
+            context.Add(this);
+            context.SaveChanges();
+        }
     }
-};
+}

@@ -1,5 +1,6 @@
 ﻿using KeyManager.Data;
 using KeyManager.Models;
+using KeyManager.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,15 +47,18 @@ namespace KeyManager
 
             _host.Services.GetService<DbInitializer>().Initialize();
 
-            AuthenticationWindow authWindow = _host.Services.GetService<AuthenticationWindow>();
-            authWindow.ShowDialog();
+            AuthenticationWindow authentication = _host.Services.GetService<AuthenticationWindow>();
+            authentication.ShowDialog();
 
-            if (authWindow.User != null)
+            if (authentication.User != null)
             {
                 this.ShutdownMode = ShutdownMode.OnMainWindowClose;
-                VaultContext context = _host.Services.GetService<VaultContext>();
-                
-                new MainWindow(context, authWindow.User).ShowDialog();
+
+                var context = _host.Services.GetService<VaultContext>();
+
+                var mainWindow = new MainWindow(context, authentication.User);
+                mainWindow.User = authentication.User;
+                mainWindow.ShowDialog();
             }
             Shutdown();
         }
