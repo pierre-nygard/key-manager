@@ -43,9 +43,15 @@ namespace KeyManager.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        internal void Remove(VaultContext context)
+        public void Delete(VaultContext context)
         {
             context.Services.Remove(this);
+            context.SaveChanges();
+        }
+
+        public void Add(VaultContext context)
+        {
+            context.Services.Add(this);
             context.SaveChanges();
         }
     }

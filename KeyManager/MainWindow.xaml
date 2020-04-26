@@ -26,8 +26,8 @@
 
             <DockPanel DockPanel.Dock="Bottom">
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
-                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Foreground="White" Name="addButton" Click="addBtn_Click" Padding="4" Margin="0 10 0 4" Content="Lägg till Service" />
-                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Foreground="White" Name="removeBtn" Click="removeBtn_Click" Padding="4" Margin="0 0 0 10" Content="Ta bort Service" />
+                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Foreground="White" Name="AddButton" Click="AddBtn_Click" Padding="4" Margin="0 10 0 4" Content="Lägg till Service" />
+                    <Button Style="{StaticResource MaterialDesignRaisedDarkButton}" Foreground="White" Name="RemoveBtn" Click="RemoveBtn_Click" Padding="4" Margin="0 0 0 10" Content="Ta bort Service" />
                 </StackPanel>
                 <ListView DockPanel.Dock="Top" Name="lvServices" MouseDoubleClick="lvServices_Click">
                     <ListView.ItemTemplate>

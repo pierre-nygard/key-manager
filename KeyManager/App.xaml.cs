@@ -36,7 +36,7 @@ namespace KeyManager
                 services.AddDbContext<VaultContext>(options => 
                     options.UseSqlServer(hostContext.Configuration.GetConnectionString("DefaultConnection")));
                 services.AddSingleton<AuthenticationWindow>();
-                services.AddSingleton<DbInitializer>();
+                //services.AddSingleton<DbInitializer>();
             })
             .Build();
         }
@@ -45,7 +45,8 @@ namespace KeyManager
         {
             await _host.StartAsync();
 
-            _host.Services.GetService<DbInitializer>().Initialize();
+            // Used in Dev mode
+            //_host.Services.GetService<DbInitializer>().Initialize();
 
             AuthenticationWindow authentication = _host.Services.GetService<AuthenticationWindow>();
             authentication.ShowDialog();
@@ -57,7 +58,6 @@ namespace KeyManager
                 var context = _host.Services.GetService<VaultContext>();
 
                 var mainWindow = new MainWindow(context, authentication.User);
-                mainWindow.User = authentication.User;
                 mainWindow.ShowDialog();
             }
             Shutdown();

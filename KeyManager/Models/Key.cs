@@ -50,7 +50,13 @@ namespace KeyManager.Models
 
         public void Add(VaultContext context)
         {
-            context.Add(this);
+            context.Keys.Add(this);
+            context.SaveChanges();
+        }
+
+        public void Update(VaultContext context)
+        {
+            context.Keys.Update(this);
             context.SaveChanges();
         }
     }

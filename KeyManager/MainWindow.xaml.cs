@@ -57,7 +57,7 @@ namespace KeyManager
             this.VisuallyReset();
         }
 
-        private void removeBtn_Click(object sender, RoutedEventArgs e)
+        private void RemoveBtn_Click(object sender, RoutedEventArgs e)
         {
             if (lvServices.SelectedItem == null)
                 return;
@@ -70,14 +70,26 @@ namespace KeyManager
                 MessageBox.Show($"Kan ej ta bort {service.Name}!\nHittade tillhörande {foundKeys} Keys. Ta bort dessa ifall du vill fortsätta.");
                 return;
             }
-            service.Remove(_context);
+            service.Delete(_context);
             Services.Remove(service);
             this.VisuallyReset();
         }
 
-        private void addBtn_Click(object sender, RoutedEventArgs e)
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            Services.Add(new Service { Name = "New Service Name" });
+            var addService = new AddWindow();
+            addService.ShowDialog();
+
+            if(addService.DialogResult == true && string.IsNullOrEmpty(addService.ObjectName) == false)
+            {
+                var service = new Service 
+                { 
+                    Name = addService.ObjectName,
+                    User = this.User
+                };
+                service.Add(_context);
+                Services.Add(service);
+            }
             this.VisuallyReset();
         }
     }

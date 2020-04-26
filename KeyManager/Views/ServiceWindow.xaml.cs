@@ -45,14 +45,15 @@ namespace KeyManager.Views
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var addKey = new KeyAddWindow();
+            var addKey = new AddWindow();
             addKey.ShowDialog();
+
             if(addKey.DialogResult == true)
             {
                 var key = new Key
                 {
                     ServiceID = Service.ID,
-                    Value = addKey.KeyName
+                    Value = addKey.ObjectName
                 };
                 key.Add(_context);
                 Keys.Add(key);
@@ -73,7 +74,18 @@ namespace KeyManager.Views
 
         private void ChangeBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (lvKeys.SelectedItem == null)
+                return;
 
+            Key key = lvKeys.SelectedItem as Key;
+            var changeKey = new UpdateWindow(key);
+            changeKey.ShowDialog();
+
+            if(changeKey.DialogResult == true)
+            {
+                key.Value = changeKey.KeyName;
+                key.Update(_context);
+            }
         }
     }
 }

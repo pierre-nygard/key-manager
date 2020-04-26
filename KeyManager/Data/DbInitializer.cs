@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace KeyManager.Data
 {
@@ -26,17 +27,16 @@ namespace KeyManager.Data
                 return;
             }
 
+            // Set user ID
             int userID = 1;
 
+            // Seed Services here
             var services = new List<Service>
             {
                 new Service {Name = "Facebook", UserID = userID},
-                new Service {Name = "Loopia", UserID = userID},
                 new Service {Name = "Gmail", UserID = userID},
                 new Service {Name = "Github", UserID = userID},
-                new Service {Name = "LendFair", UserID = userID},
-                new Service {Name = "StackOverflow", UserID = userID},
-                new Service {Name = "RentPersonligt", UserID = userID}
+                new Service {Name = "StackOverflow", UserID = userID}
             };
 
             services.ForEach(s =>
