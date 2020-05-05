@@ -2,7 +2,7 @@
 
 This is a revamp project of my old Console Key Manager.
 
-Building this one using WPF while I'm learning how to use Generic Host. This became a fun experiment on how to use GH with WPF Applications.
+Building this one using WPF while I'm learning how to use Generic Host. This became a fun experiment on how to use Generic Host with WPF Applications.
 
 
 
