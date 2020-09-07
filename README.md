@@ -1,9 +1,7 @@
-# key-manager
+### MyKeyManager
 
-This is a revamp project of my old Console Key Manager.
-
-Building this one using WPF while I'm learning how to use Generic Host. This became a fun experiment on how to use Generic Host with WPF Applications.
-
+Revamp project of my an Console Key Manager.
+This is an experimental build using GenericHost with a WPF applicaton.
 
 
 ## User Stories
@@ -15,15 +13,9 @@ Building this one using WPF while I'm learning how to use Generic Host. This bec
 * As a user I want to be able to click on a Service in the list and see all the connected Keys, and also be able to delete or change a Key.
 * As a user I want to be able to remove a Service only when it has no connected Keys.
 
-## Purpose
-
-To be able to house and edit more than one Key or Pass-phrase for any Services I'm using.
-
-Thing I learned from my last project was that a Service might have 2 or more keys, so I had to duplicate services. 
 
 ## Data Design
-
-Application is using a relational database and EF Core
+The application is using a TransactSQL database with 3 data models. Keys, Services and a single User. 
 
 | User     | Interaction |
 | -------- | ----------- |
@@ -43,6 +35,7 @@ Application is using a relational database and EF Core
 | ID        | Service     |
 | Value     |             |
 | ServiceID |             |
+
 
 ## Graphic Design
 
